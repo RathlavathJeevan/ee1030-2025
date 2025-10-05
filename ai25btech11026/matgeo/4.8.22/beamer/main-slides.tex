@@ -1,0 +1,168 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usetheme{Madrid}
+\usecolortheme{default}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{txfonts}
+\usepackage{tkz-euclide}
+\usepackage{listings}
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{gvv}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} % Ensure lmodern is loaded for pdflatex
+\usepackage{circuitikz}
+\usepackage{tikz}
+\usepackage{graphicx}
+
+\setbeamertemplate{page number in head/foot}[totalframenumber]
+
+\usepackage{tcolorbox}
+\tcbuselibrary{minted,breakable,xparse,skins}
+
+
+
+\definecolor{bg}{gray}{0.95}
+\DeclareTCBListing{mintedbox}{O{}m!O{}}{%
+  breakable=true,
+  listing engine=minted,
+  listing only,
+  minted language=#2,
+  minted style=default,
+  minted options={%
+    linenos,
+    gobble=0,
+    breaklines=true,
+    breakafter=,,
+    fontsize=\small,
+    numbersep=8pt,
+    #1},
+  boxsep=0pt,
+  left skip=0pt,
+  right skip=0pt,
+  left=25pt,
+  right=0pt,
+  top=3pt,
+  bottom=3pt,
+  arc=5pt,
+  leftrule=0pt,
+  rightrule=0pt,
+  bottomrule=2pt,
+  toprule=2pt,
+  colback=bg,
+  colframe=orange!70,
+  enhanced,
+  overlay={%
+    \begin{tcbclipinterior}
+    \fill[orange!20!white] (frame.south west) rectangle ([xshift=20pt]frame.north west);
+    \end{tcbclipinterior}},
+  #3,
+}
+\lstset{
+    language=C,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    stringstyle=\color{orange},
+    commentstyle=\color{green!60!black},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    showstringspaces=false,
+}
+%------------------------------------------------------------
+%This block of code defines the information to appear in the
+%Title page
+\title %optional
+{4.8.22}
+
+%\subtitle{A short story}
+
+\author % (optional)
+{RATHLAVATH JEEVAN -AI25BTECH11026}
+
+
+
+\begin{document}
+
+
+\frame{\titlepage}
+\begin{frame}{Question}
+The distance of the line 
+\begin{align}
+\vec{r} = (\hat{i} - \hat{j}) + \lambda(\hat{i} + 5\hat{j} + \hat{k})
+\end{align}
+from the plane 
+\begin{align}
+\vec{r} \cdot (\hat{i} - \hat{j} + 4\hat{k}) = 5
+\end{align}
+is \, ?
+\end{frame}
+ \begin{frame}{Theoretical Solution} 
+Let the line be given as:
+\begin{align}
+\vec{r} = \myvec{1 \\ -1 \\ 0} + \lambda \myvec{1 \\ 5 \\ 1} \label{1}
+\end{align}
+
+Let the plane be:
+\begin{align}
+\vec{r}^\top \myvec{1 \\ -1 \\ 4} = 5 \label{2}
+\end{align}
+
+Let:
+\begin{align}
+\vec{a} = \myvec{1 \\ -1 \\ 0}, \quad \vec{m} = \myvec{1 \\ 5 \\ 1}, \quad \vec{n} = \myvec{1 \\ -1 \\ 4} \label{3}
+\end{align}
+\end{frame}
+\begin{frame}{Theoretical Solution} 
+The direction vector \( \vec{m} \) is along the line.  
+The normal vector \( \vec{n} \) is normal to the plane.
+
+\textbf{Step 2: Compute \( \vec{m}^\top \vec{n} \)}
+
+\begin{align}
+\vec{m}^\top \vec{n} = \myvec{1 & 5 & 1} \myvec{1 \\ -1 \\ 4} = 1 - 5 + 4 = 0 \label{7}
+\end{align}
+
+
+So, the line is **parallel to the plane** and does **not intersect**.
+
+---
+
+Now, we use **distance from point to plane** formula geometrically.
+
+Since line is parallel to the plane, the perpendicular distance from **any point** on the line to the plane is the required distance.
+
+\end{frame}
+\begin{frame}{Theoretical Solution} 
+Let us choose \( \vec{a} = \myvec{1 \\ -1 \\ 0} \)
+
+Let \( d \) be the distance from point \( \vec{a} \) to the plane.
+
+Let the distance be:
+\begin{align}
+d = \frac{| \vec{a}^\top \vec{n} - 5 |}{\sqrt{ \vec{n}^\top \vec{n} }} \label{9}
+\end{align}
+
+
+
+Compute \( \vec{n}^\top \vec{n} \):
+\begin{align}
+\vec{n}^\top \vec{n} = \myvec{1 & -1 & 4} \myvec{1 \\ -1 \\ 4} = 1 + 1 + 16 = 18 \label{10}
+\end{align}
+\end{frame}
+\begin{frame}{Theoretical Solution} 
+Therefore:
+\begin{align}
+d = \frac{|2 - 5|}{\sqrt{18}} = \frac{3}{\sqrt{18}} = \frac{3}{3\sqrt{2}} = \frac{1}{\sqrt{2}} \label{11}
+\end{align}
+
+\[
+\boxed{d = \frac{1}{\sqrt{2}}}
+\]
+\end{frame}
+\begin{frame}{Plot}
+    \centering
+    \includegraphics[width=\columnwidth, height=0.8\textheight, keepaspectratio]{beamer/figs/mat8.jpeg}     
+\end{frame}
+\end{document}
